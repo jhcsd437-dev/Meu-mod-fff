@@ -1,1 +1,28 @@
+name: Compilar Mod FF
 
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout do Código
+      uses: actions/checkout@v4
+
+    - name: Configurar NDK
+      uses: nttld/setup-ndk@v1
+      with:
+        ndk-version: r25c
+
+    - name: Compilar com ndk-build
+      run: |
+        $ANDROID_NDK_HOME/ndk-build NDK_PROJECT_PATH=. APP_BUILD_SCRIPT=./jni/Android.mk NDK_APPLICATION_MK=./jni/Application.mk
+
+    - name: Salvar o .so
+      uses: actions/upload-artifact@v4
+      with:
+        name: meu-mod-so
+        path: libs/arm64-v8a/*.so
