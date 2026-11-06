@@ -19,7 +19,7 @@ jobs:
       run: cp jni/Main.cpp template/jni/Main.cpp
 
     - name: Setup NDK
-      uses: nttdl/setup-ndk@v1
+      uses: nttld/setup-ndk@v1
       with:
         ndk-version: r25c
 
