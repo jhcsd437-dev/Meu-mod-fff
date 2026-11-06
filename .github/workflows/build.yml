@@ -2,7 +2,7 @@ name: Compilar Mod
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "Main" ]
   workflow_dispatch:
 
 jobs:
